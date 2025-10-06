@@ -1,0 +1,14 @@
+
+# Build results
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+*.vscode/
+*.DS_Store
+*.swp
+dist/
+publish/
+.env

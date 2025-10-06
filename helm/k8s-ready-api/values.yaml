@@ -1,0 +1,34 @@
+
+image:
+  repository: ghcr.io/your-org/k8s-ready-api
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  className: nginx
+  host: api.example.com
+  annotations: {}
+  path: /
+  pathType: Prefix
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+env:
+  ASPNETCORE_ENVIRONMENT: Production
+  Logging__LogLevel__Default: Information
+  Logging__LogLevel__Microsoft.AspNetCore: Information
+  ServiceOptions__Greeting: Hello from Helm values
