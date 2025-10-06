@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: test-api
-  namespace: default
+  namespace: apps
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
