@@ -1,20 +1,20 @@
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: k8s-ready-api
+  name: test-api
+  namespace: default
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: nginx
   rules:
-    - host: api.example.com
+    - host: test-api.local
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: k8s-ready-api
+                name: test-api
                 port:
                   number: 80
