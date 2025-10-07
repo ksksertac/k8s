@@ -5,6 +5,11 @@ metadata:
   namespace: default
   labels:
     app: test-api
+  annotations:
+    # 🔄 Argo Image Updater konfigürasyonu
+    argocd-image-updater.argoproj.io/image-list: test-api=ghcr.io/ksksertac/test-api
+    argocd-image-updater.argoproj.io/test-api.update-strategy: latest
+    argocd-image-updater.argoproj.io/test-api.pull-secret: pullsecret:argocd/ghcr-creds
 spec:
   replicas: 1
   selector:
