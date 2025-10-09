@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testapi
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testapi
+  template:
+    metadata:
+      labels:
+        app: testapi
+    spec:
+      containers:
+      - name: testapi
+        image: ghcr.io/ksksertac/test-api:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
+          limits:
+            cpu: "250m"
+            memory: "128Mi"
+      imagePullSecrets:
+      - name: ghcr-secret

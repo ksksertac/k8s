@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: testapi-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "traefik"          # k3s'in varsayılan ingress controller'ı
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # otomatik TLS için
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  tls:
+  - hosts:
+      - k3s.jrkripto.vip
+    secretName: testapi-tls
+  rules:
+  - host: k3s.jrkripto.vip
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: testapi
+            port:
+              number: 8080

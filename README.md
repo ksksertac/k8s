@@ -14,19 +14,20 @@ docker run -p 8080:8080 -e ASPNETCORE_ENVIRONMENT=Development k8s-ready-api:loca
 
 ## Kubernetes
 
-1. Push your image to a registry and update `k8s/deployment.yaml` image field.
-2. Create the namespace (optional):
+Apply resources:
+
 ```bash
-kubectl create ns demo || true
-```
-3. Apply resources:
-```bash
-kubectl -n demo apply -f k8s/configmap.yaml
-kubectl -n demo apply -f k8s/deployment.yaml
-kubectl -n demo apply -f k8s/service.yaml
-kubectl -n demo apply -f k8s/hpa.yaml
-# Ingress (optional; requires an ingress controller):
-kubectl -n demo apply -f k8s/ingress.yaml
+
+kubectl apply -f k8s/01-namespace.yaml
+kubectl apply -f k8s/02-cert-manager.yaml
+helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=k3s.jrkripto.vip --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=ksksertac@gmail.com --set letsEncrypt.ingress.class=nginx
+kubectl apply -f k8s/04-metrics-server.yaml
+kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=ksksertac --docker-password=ghp_xxxxxxxxxxxxx --docker-email=ksksertac@gmail.com
+kubectl apply -f k8s/05-testapi-deployment.yaml
+kubectl apply -f k8s/06-testapi-service.yaml
+kubectl apply -f k8s/07-testapi-hpa.yaml
+kubectl apply -f k8s/08-testapi-ingress.yaml
+
 ```
 
 ### Health endpoints
