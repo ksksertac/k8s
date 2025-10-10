@@ -4,17 +4,17 @@ metadata:
   name: testapi-ingress
   namespace: default
   annotations:
-    kubernetes.io/ingress.class: "traefik"          # k3s'in varsayılan ingress controller'ı
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # otomatik TLS için
+    kubernetes.io/ingress.class: "traefik"          # K3s içindeki Traefik yönlendirici
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # TLS için
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
   tls:
   - hosts:
-      - k3s.jrkripto.vip
+      - api.jrkripto.vip
     secretName: testapi-tls
   rules:
-  - host: k3s.jrkripto.vip
+  - host: api.jrkripto.vip
     http:
       paths:
       - path: /

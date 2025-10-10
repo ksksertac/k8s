@@ -6,9 +6,8 @@ metadata:
 spec:
   selector:
     app: testapi
-  type: NodePort
+  type: ClusterIP   # 🔥 Burayı değiştirdik
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 31884
     protocol: TCP
