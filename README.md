@@ -20,9 +20,9 @@ Apply resources:
 
 kubectl apply -f k8s/01-namespace.yaml
 kubectl apply -f k8s/02-cert-manager.yaml
-helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=k3s.jrkripto.vip --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=ksksertac@gmail.com --set letsEncrypt.ingress.class=nginx
+helm install rancher rancher-latest/rancher --namespace cattle-system --set hostname=k3s.jrkripto.vip --set ingress.tls.source=letsEncrypt --set letsEncrypt.email=abc@abc.com --set letsEncrypt.ingress.class=nginx
 kubectl apply -f k8s/04-metrics-server.yaml
-kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=ksksertac --docker-password=ghp_xxxxxxxxxxxxx --docker-email=ksksertac@gmail.com
+kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=abc --docker-password=ghp_xxxxxxxxxxxxx --docker-email=abc@abc.com
 kubectl apply -f k8s/05-testapi-deployment.yaml
 kubectl apply -f k8s/06-testapi-service.yaml
 kubectl apply -f k8s/07-testapi-hpa.yaml
