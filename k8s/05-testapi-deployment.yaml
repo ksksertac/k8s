@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: testapi
-        image: ghcr.io/ksksertac/test-api:v2
+        image: ghcr.io/ksksertac/test-api:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
