@@ -4,15 +4,9 @@ metadata:
   name: testapi-ingress
   namespace: default
   annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
-  ingressClassName: traefik          # ✅ Yeni ekledik
-  tls:
-  - hosts:
-      - k3sapi.jrkripto.vip
-    secretName: testapi-tls
+  ingressClassName: traefik
   rules:
   - host: k3sapi.jrkripto.vip
     http:
