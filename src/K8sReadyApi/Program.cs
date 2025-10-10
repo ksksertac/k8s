@@ -28,6 +28,25 @@ app.MapGet("/", () => new
     timestamp = DateTimeOffset.UtcNow
 });
 
+app.MapGet("/load", () =>
+{
+    var sw = new System.Diagnostics.Stopwatch();
+    sw.Start();
+
+    // 500ms boyunca CPU'yu meşgul et
+    while (sw.ElapsedMilliseconds < 500)
+    {
+        double x = Math.Sqrt(12345.6789);
+    }
+
+    return Results.Ok(new
+    {
+        message = "CPU load generated",
+        timestamp = DateTime.UtcNow
+    });
+});
+
+
 // Health endpoints
 app.MapHealthChecks("/health/live", new HealthCheckOptions
 {
