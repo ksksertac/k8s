@@ -1,0 +1,12 @@
+# k8s/fleet.yaml
+helm:
+  releaseName: testapi
+  chart: ./k8s
+  values:
+    image:
+      repository: ghcr.io/ksksertac/test-api
+      tag: latest
+targetCustomizations:
+  - name: default
+    clusterSelector: {}
+    namespace: default
